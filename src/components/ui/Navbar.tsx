@@ -94,7 +94,6 @@ const Navbar: FC = () => {
               {apiError}
             </Toast.Body>
           </Toast>
-          Toast
         </ToastContainer>
       )}
     </>
