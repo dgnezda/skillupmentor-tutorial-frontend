@@ -72,13 +72,16 @@ const DashboardRoles: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data.data.map((item: RoleType, index: number) => {
+                  {data?.data.data.map((item: RoleType, index: number) => (
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td>
                         <Link 
                           className={isMobile ? 'btn btn-warning btn-sm me-2 mb-2' : 'btn btn-warning btn-sm me-2'}
                           to={`${routes.DASHBOARD_PREFIX}/roles/edit`}
+                          state={{
+                            ...item
+                          }}
                         >Edit</Link>
                         <Button 
                           className={isMobile ? 'btn-danger mb-2' : 'btn-danger'}
@@ -89,7 +92,7 @@ const DashboardRoles: FC = () => {
                         </Button>
                       </td>
                     </tr>
-                  })}
+                  ))}
                 </tbody>
               </Table>
               {data?.data.meta.last_page > 1 && (

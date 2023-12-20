@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap'
 import { Controller } from 'react-hook-form'
 import FormLabel from 'react-bootstrap/FormLabel'
-import { Link } from 'react-router-dom'
 import { routes } from 'constants/routesConstants'
 import * as API from 'api/Api'
 import { StatusCode } from 'constants/errorConstants'
@@ -153,12 +152,6 @@ const CreateUpdateRoleForm: FC<Props> = ({ defaultValues }) => {
                             {errors.permissions.message}
                         </div>
                     )}
-                </div>
-                <div className='d-flex justify-content-between align-items-center mb-2'>
-                    <p className='mb-0'>Don{'\''}t have an account yet?</p>
-                    <Link className='text-decoration-none text-end' to={routes.SIGNUP}>
-                        Create account
-                    </Link>
                 </div>
                 <Button className='w-100 mt-4' type='submit'>
                     {defaultValues ? 'Update role' : 'Create new role'}
