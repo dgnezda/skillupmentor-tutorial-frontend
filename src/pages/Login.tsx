@@ -5,7 +5,7 @@ import { FC } from 'react'
 const Login: FC = () => {
   return (
     <Layout>
-        <LoginForm />
+      <LoginForm />
     </Layout>
   )
 }

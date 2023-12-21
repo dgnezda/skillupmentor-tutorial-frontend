@@ -27,7 +27,9 @@ const DashboardRolesAdd = lazy(() => import('pages/Dashboard/Roles/Add'))
 const DashboardRolesEdit = lazy(() => import('pages/Dashboard/Roles/Edit'))
 const DashboardProducts = lazy(() => import('pages/Dashboard/Products'))
 const DashboardProductsAdd = lazy(() => import('pages/Dashboard/Products/Add'))
-const DashboardProductsEdit = lazy(() => import('pages/Dashboard/Products/Edit'))
+const DashboardProductsEdit = lazy(
+  () => import('pages/Dashboard/Products/Edit'),
+)
 const DashboardOrders = lazy(() => import('pages/Dashboard/Orders'))
 
 /* Restricted routes */

@@ -1,5 +1,5 @@
 import { routes } from 'constants/routesConstants'
-import  { Dispatch, FC, SetStateAction, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import OffCanvas from 'react-bootstrap/Offcanvas'
 import { NavLink } from 'react-router-dom'
@@ -16,33 +16,33 @@ interface ISidebarItem {
 const sidebarItems: ISidebarItem[] = [
   {
     title: 'Dashboard',
-    href: routes.DASHBOARD_PREFIX
+    href: routes.DASHBOARD_PREFIX,
   },
   {
     title: 'Users',
-    href: `${routes.DASHBOARD_PREFIX}/users`
+    href: `${routes.DASHBOARD_PREFIX}/users`,
   },
   {
     title: 'Roles',
-    href: `${routes.DASHBOARD_PREFIX}/roles`
+    href: `${routes.DASHBOARD_PREFIX}/roles`,
   },
   {
     title: 'Products',
-    href: `${routes.DASHBOARD_PREFIX}/products`
+    href: `${routes.DASHBOARD_PREFIX}/products`,
   },
   {
     title: 'Orders',
-    href: `${routes.DASHBOARD_PREFIX}/orders`
+    href: `${routes.DASHBOARD_PREFIX}/orders`,
   },
 ]
 
 const Item: FC<ItemProps> = ({ href, setOpen, title }) => {
   return (
-    <li className='mb-4'>
-      <NavLink 
+    <li className="mb-4">
+      <NavLink
         className="text-decoration-none"
         to={href}
-        onClick={() => setOpen(false)} 
+        onClick={() => setOpen(false)}
       >
         {title}
       </NavLink>
@@ -58,21 +58,21 @@ const Sidebar: FC = () => {
 
   return (
     <div>
-      <Button 
-        className='sidebar__btn-menu btn-dark text-light rounded-0 d-flex justify-content-center align-items-center p-4'
-        type='button'
-        onClick={handleOpen}  
+      <Button
+        className="sidebar__btn-menu btn-dark text-light rounded-0 d-flex justify-content-center align-items-center p-4"
+        type="button"
+        onClick={handleOpen}
       >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          width="16" 
-          height="16" 
-          fill="currentColor" 
-          className="bi bi-list" 
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          className="bi bi-list"
           viewBox="0 0 16 16"
         >
-          <path 
-            fillRule="evenodd" 
+          <path
+            fillRule="evenodd"
             d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
           />
         </svg>
@@ -81,7 +81,7 @@ const Sidebar: FC = () => {
         show={open}
         onHide={handleClose}
         className="offcanvas offcanvas-start"
-        tabIndex={-1}  
+        tabIndex={-1}
       >
         <OffCanvas.Header closeButton>
           <OffCanvas.Title>
@@ -89,9 +89,9 @@ const Sidebar: FC = () => {
           </OffCanvas.Title>
         </OffCanvas.Header>
         <OffCanvas.Body>
-          <ul className='ps-0 list-unstyled'>
+          <ul className="ps-0 list-unstyled">
             {sidebarItems.map((item, index) => (
-              <Item 
+              <Item
                 key={index}
                 title={item.title}
                 href={item.href}

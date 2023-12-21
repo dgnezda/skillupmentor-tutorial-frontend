@@ -23,8 +23,8 @@ const DashboardRoles: FC = () => {
     () => API.fetchPaginatedRoles(pageNumber),
     {
       keepPreviousData: true,
-      refetchOnWindowFocus: false
-    }
+      refetchOnWindowFocus: false,
+    },
   )
 
   const { mutate } = useMutation((id: string) => API.deleteRole(id), {
@@ -32,27 +32,33 @@ const DashboardRoles: FC = () => {
       if (response.data?.statusCode === StatusCode.BAD_REQUEST) {
         setApiEroor(response.data.message)
         setShowError(true)
-      } else if (response.data?.statusCode === StatusCode.INTERNAL_SERVER_ERROR) {
-          setApiEroor(response.data.message)
-          setShowError(true)
+      } else if (
+        response.data?.statusCode === StatusCode.INTERNAL_SERVER_ERROR
+      ) {
+        setApiEroor(response.data.message)
+        setShowError(true)
       } else {
-          refetch()
+        refetch()
       }
     },
     onError: () => {
-      setApiEroor('Something went wrong while deleting a product.')
+      setApiEroor('Something went wrong while deleting a role.')
       setShowError(true)
-    }
+    },
   })
 
-  const handleDelete = (id:string) => {
+  const handleDelete = (id: string) => {
     mutate(id)
   }
 
-  return <DashboardLayout>
-      <div className='mb-4'>
-        <h1 className='mb-4'>Role</h1>
-        <Link className='btn btn-dark' to={`${routes.DASHBOARD_PREFIX}/roles/add`}>
+  return (
+    <DashboardLayout>
+      <div className="mb-4">
+        <h1 className="mb-4">Role</h1>
+        <Link
+          className="btn btn-dark"
+          to={`${routes.DASHBOARD_PREFIX}/roles/add`}
+        >
           Add
         </Link>
       </div>
@@ -76,16 +82,24 @@ const DashboardRoles: FC = () => {
                     <tr key={index}>
                       <td>{item.name}</td>
                       <td>
-                        <Link 
-                          className={isMobile ? 'btn btn-warning btn-sm me-2 mb-2' : 'btn btn-warning btn-sm me-2'}
+                        <Link
+                          className={
+                            isMobile
+                              ? 'btn btn-warning btn-sm me-2 mb-2'
+                              : 'btn btn-warning btn-sm me-2'
+                          }
                           to={`${routes.DASHBOARD_PREFIX}/roles/edit`}
                           state={{
-                            ...item
+                            ...item,
                           }}
-                        >Edit</Link>
-                        <Button 
-                          className={isMobile ? 'btn-danger mb-2' : 'btn-danger'}
-                          size='sm'
+                        >
+                          Edit
+                        </Link>
+                        <Button
+                          className={
+                            isMobile ? 'btn-danger mb-2' : 'btn-danger'
+                          }
+                          size="sm"
                           onClick={() => handleDelete(item.id)}
                         >
                           Delete
@@ -98,7 +112,7 @@ const DashboardRoles: FC = () => {
               {data?.data.meta.last_page > 1 && (
                 <div>
                   <Button
-                    className='me-2'
+                    className="me-2"
                     onClick={() => setPageNumber((prev) => prev - 1)}
                     disabled={pageNumber === 1}
                   >
@@ -117,18 +131,17 @@ const DashboardRoles: FC = () => {
         </>
       )}
       {showError && (
-        <ToastContainer className='p-3' position='top-end'>
+        <ToastContainer className="p-3" position="top-end">
           <Toast onClose={() => setShowError(false)} show={showError}>
             <Toast.Header>
-              <strong className='me-suto text-danger'>Error</strong>
+              <strong className="me-suto text-danger">Error</strong>
             </Toast.Header>
-            <Toast.Body className='text-danger bg-light'>
-              {apiError}
-            </Toast.Body>
+            <Toast.Body className="text-danger bg-light">{apiError}</Toast.Body>
           </Toast>
         </ToastContainer>
       )}
     </DashboardLayout>
+  )
 }
 
 export default DashboardRoles
